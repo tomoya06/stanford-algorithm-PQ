@@ -20,6 +20,14 @@ As I didn't read through the whole Quick Sort slides, that difference cost me so
 
 Nevertheless, code's in `donut` folder.
 
+## Homework 3
+
+Minimum Cut problem. Cope with Force and Randomized Contractions. But it might take some time to find out the minimum one. Currently my code, with both strateges, can only find the 20 cuts as minimum within an acceptable time, while the answer is 17. 
+
+Since there are totally $2^{200}$ solutions, I decide to skip the *loooong* waiting time. 
+
+Code's in `eclair` folder. 
+
 ## More Homework
 
 To be continued...

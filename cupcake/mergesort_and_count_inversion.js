@@ -1,5 +1,5 @@
 // let testArr = [1, 5, 3, 2, 4]
-const readArr = require('./cupcake_readfile')
+const readArr = require('./readfile')
 let testArr = readArr()
 
 function sortAndCount(arr, low, high) {
