@@ -3,7 +3,6 @@ const path = require('path')
 
 module.exports = function() {
     let graph = []
-    graph.push([])
     
     try {
         let data = fs.readFileSync(path.resolve(__dirname, 'kargerMinCut.txt'))
@@ -12,10 +11,8 @@ module.exports = function() {
         strArr.forEach(item => {
             let edgesArr = item.split('\t')
             edgesArr.pop()
-
-            let edgesForCurNode = []
-            edgesArr.forEach(edge => edgesForCurNode.push(parseInt(edge)))
-            graph.push(edgesForCurNode)
+            edgesArr = edgesArr.map(item => parseInt(item))
+            graph.push([[edgesArr.shift()], edgesArr])
         })
     } catch (error) {
         console.log(error)

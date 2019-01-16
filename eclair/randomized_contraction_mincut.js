@@ -2,38 +2,44 @@
 // Graph format: [[], [1, 3, 4, ...], [1, 2, 4], ...] (array of edges. the 0th item of array is empty. start from 1)
 // Only need to count the remain crossing edges. 
 
-let testGraph = require('./readfile')()
 
 let mincut = 0
 
-// let loopTimes = 10000
+let loopTimes = 10000
+// return 0
 
-for (;;) {
+for (let t = 0; t < loopTimes; t++) {
 
-    let cutCnt = 0
-    let leftNodes = []
+    let testGraph = require('./readfile')()
+    while (testGraph.length > 2) {
+        // randomly choose an edge
+        let pickedFrom = Math.floor(Math.random() * testGraph.length)
+        let pickedTo = Math.floor(Math.random() * testGraph[pickedFrom][1].length)
 
-    let curRate = Math.random()
-
-    for (let node=1; node<testGraph.length; node++) {
-        if (Math.random() < curRate) {
-            leftNodes.push(node)
-        }  
-    }
-
-    leftNodes.forEach((node) => {
-        testGraph[node].forEach((edgeTo) => {
-            if (leftNodes.indexOf(edgeTo) < 0) { // this edge goes to right. count it
-                cutCnt++
-            }
+        // index conversion
+        pickedTo = testGraph[pickedFrom][1][pickedTo]
+        pickedTo = testGraph.findIndex((item) => {
+            return (item[0].indexOf(pickedTo) >= 0)
         })
-    })
 
-    if (cutCnt > 0 && (mincut == 0 || cutCnt<mincut)) { 
-        mincut = cutCnt 
-        console.clear()
-        console.log(`New min cut: ${cutCnt}`)
+        // let pickedFrom = 0
+        // let pickedTo = 1
+
+        // join two nodes
+        testGraph[pickedFrom][0] = testGraph[pickedFrom][0].concat(testGraph[pickedTo][0])
+        testGraph[pickedFrom][1] = testGraph[pickedFrom][1].concat(testGraph[pickedTo][1])
+
+        testGraph[pickedFrom][1] = testGraph[pickedFrom][1].filter(item => testGraph[pickedFrom][0].indexOf(item) < 0)
+
+        testGraph.splice(pickedTo, 1)
     }
+
+    let curCut = testGraph[0][1].length
+    if (mincut == 0 || curCut < mincut) {
+        mincut = curCut
+        console.log(`New MINIMUM CUTS: ${mincut}`)
+    }
+    
 }
 
 return 0
