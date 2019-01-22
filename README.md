@@ -33,6 +33,14 @@ And I got the answer correctly.
 
 Code's in `eclair` folder. 
 
+## Homework 4
+
+Computing Strong Components problem. Current code takes a long time, due to the large data set. This also causes recursive call stack overflow, if using traditional recursive DFS algorithm. Therefore a stack is used in my code. 
+
+There may still be some improvements on running speed. 
+
+Code's in `Froyo` folder. `recursive_stack_check.js` is used to find the maximum recursive call stack depth. 
+
 ## More Homework
 
 To be continued...
