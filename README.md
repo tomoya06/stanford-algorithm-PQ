@@ -41,6 +41,12 @@ There may still be some improvements on running speed.
 
 Code's in `Froyo` folder. `recursive_stack_check.js` is used to find the maximum recursive call stack depth. 
 
+## Homework 5
+
+Find shortest path with Dijktra Algorithm. Used both naive and with-heap ways. Heap is provided by NPM Heap. To run it, run `npm install` first.
+
+Code's in `Ginderbread` folder.
+
 ## More Homework
 
 To be continued...
