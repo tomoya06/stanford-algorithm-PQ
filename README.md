@@ -4,6 +4,8 @@ Online Course Website: [Part 1](https://lagunita.stanford.edu/courses/course-v1:
 
 Work in NodeJS. 
 
+> Here is Part 1. 
+
 ## Homework 1
 
 Programming assignment is an implement of "Divide and Conquer". Find inversion amount among 100000 non-sorted-and-non-repeated numbers. See `cupcake` folder. 
@@ -52,6 +54,16 @@ Code's in `Ginderbread` folder.
 2-SUM Algorithm with hash table. The variant of 2sum is inspired by [sestus's](https://github.com/sestus/algorithms-stanford/blob/master/part_1/assignment_6_1_2sum/app/two_sum_finder.py) code. But he wierd part is, there is always out-of-border error with my bisect algorith, so I had to add a boundery check before adding a new number into the set. 
 
 Code's in `honeycomb` folder.
+
+## Homework 6.2
+
+Dynamically find the median of a stream of numbers. Use a max heap to store the lower half of current stream and a min heap for the higher half, and keep them in the same height as numbers come in. Keep lower half always being one more than or the same length as the higher half, and the root of lower half is always the median. Use `heap-max-min` npm module.
+
+If use balanced-BST, the root will be the median. 
+
+Code's in `ice_scream` folder
+
+> Part 2
 
 ## More Homework
 
