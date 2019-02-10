@@ -47,6 +47,12 @@ Find shortest path with Dijktra Algorithm. Used both naive and with-heap ways. H
 
 Code's in `Ginderbread` folder.
 
+## Homework 6.1
+
+2-SUM Algorithm with hash table. The variant of 2sum is inspired by [sestus's](https://github.com/sestus/algorithms-stanford/blob/master/part_1/assignment_6_1_2sum/app/two_sum_finder.py) code. But he wierd part is, there is always out-of-border error with my bisect algorith, so I had to add a boundery check before adding a new number into the set. 
+
+Code's in `honeycomb` folder.
+
 ## More Homework
 
 To be continued...
