@@ -65,6 +65,16 @@ Code's in `ice_scream` folder
 
 > Part 2
 
+Since Part 2, Python (3.7) or Java will be used for coding.
+
+## Homework 1.1, 1.2
+
+Implements of Greedy Algorithm. Write a min-heap in py. 
+
+## Homework 1.3
+
+Prim's minimum spanning tree algorithm. Just naive implement.
+
 ## More Homework
 
 To be continued...

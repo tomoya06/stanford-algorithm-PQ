@@ -1,93 +1,54 @@
-class Edge: 
-    def __init__(self, left, rigt, wei):
+from heapq import heapify, heappop, heappush
+
+class Edge:
+    def __init__(self, left, rigt, wegt):
         self.left = left
         self.rigt = rigt
-        self.wegt = wei
+        self.wegt = wegt
 
     def __lt__(self, other):
-        return self.wegt > other.wegt
+        return self.wegt < other.wegt
 
-
-class Vertex: 
-    def __init__(self, idx, edges = []):
-        self.index = idx
-        self.edges = []
-        self.__min_edge = None
-        for edge in edges:
-            self.edges.append(edge)
-            if self.__min_edge is None or edge < self.__min_edge:
-                self.__min_edge = edge
+class Prim:
+    def __init__(self, filedir):
+        f = open(filedir, 'r')
+        self.vertex_cnt, self.edge_cnt = [int(x) for x in f.readline().split()]
+        self.visited = []
+        self.weights = []
+        self.heap = []
+        for _ in range(self.edge_cnt):
+            l, r, w = [int(x) for x in f.readline().split()]
+            heappush(self.heap, Edge(l, r, w))
+        self.__visit(1)
     
-    @property
-    def min(self):
-        return self.__min_edge.wegt
-
-    def update_min(self, visited_set):
-        self.edges = [edge for edge in self.edges if edge.rigt not in visited_set]
-
-
-class VTHeap:
-    def __init__(self):
-        self.list = []
-
-    def __position_relation(self, idx: int) -> int:
-        left_child_idx = idx * 2 + 1
-        rigt_child_idx = idx * 2 + 2
-        if (left_child_idx < len(self.list) and self.list[idx] < self.list[left_child_idx]):
-            return 1
-        if (rigt_child_idx < len(self.list) and self.list[idx] < self.list[rigt_child_idx]):
-            return 2
-        parent_idx = (idx-1) // 2
-        if (idx != 0 and self.list[parent_idx] < self.list[idx]):
-            return 3
-        return 0
-
-    def __is_right_position(self, idx: int) -> bool: 
-        return True if self.__position_relation(idx) == 0 else False
-
-    def __bubble_up(self, idx): 
-        cur_idx = idx
-        while (not self.__is_right_position(cur_idx)):
-            parent_idx = (cur_idx-1) // 2
-            self.list[cur_idx], self.list[parent_idx] = self.list[parent_idx], self.list[cur_idx]
-            cur_idx = parent_idx
-
-    def __bubble_down(self, idx):
-        if (len(self.list) <= 0):
-            return 
-        self.list.insert(0, self.list.pop(idx))
-        cur_idx = 0
-        while (not self.__is_right_position(cur_idx)):
-            left_child_idx = cur_idx * 2 + 1
-            rigt_child_idx = cur_idx * 2 + 2
-            if (rigt_child_idx < len(self.list) and self.list[rigt_child_idx].lgt(self.list[left_child_idx])):
-                self.list[cur_idx], self.list[rigt_child_idx] = self.list[rigt_child_idx], self.list[cur_idx]
-                cur_idx = rigt_child_idx
+    def __visit(self, nodeidx, wegt = 0):
+        self.visited.append(nodeidx)
+        self.weights.append(wegt)
+    
+    def __find_next(self):
+        tmp_list = []
+        while self.heap:
+            top = heappop(self.heap)
+            leftin = top.left in self.visited 
+            rigtin = top.rigt in self.visited
+            # This is what you're looking for
+            if leftin and not rigtin:
+                self.__visit(top.rigt, top.wegt)
+                break
+            elif rigtin and not leftin:
+                self.__visit(top.left, top.wegt)
+                break
+            elif rigtin and leftin:
+                pass
             else:
-                self.list[cur_idx], self.list[left_child_idx] = self.list[left_child_idx], self.list[cur_idx]
-                cur_idx = left_child_idx
+                tmp_list.append(top)
+        for edge in tmp_list:
+            heappush(self.heap, edge)
 
-    def update_visited(self, visited: set): 
-        for node in self.list:
-            node.update_min(visited)
-
-    def push(self, vertex):
-        self.list.append(vertex)
-        self.__bubble_up(len(self.list) - 1)
-
-    def pop(self, nodeidx):
-        listidx = self.list.index({ 'index': nodeidx })
-        end_node = self.list[-1]
-        return_node = self.list[listidx]
-        self.list[listidx] = end_node
-        self.list.pop()
-        pos_res = self.__position_relation(listidx)
-        if pos_res == 0:
-            pass
-        elif pos_res == 3:
-            self.__bubble_up(listidx)
-        else:
-            self.__bubble_down(listidx)
-        return return_node
-
-
+    def build(self):
+        while len(self.visited) < self.vertex_cnt:
+            self.__find_next()
+        total_cost = 0
+        for vst in self.weights:
+            total_cost += vst
+        return total_cost
