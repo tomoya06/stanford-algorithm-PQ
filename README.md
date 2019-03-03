@@ -75,6 +75,32 @@ Implements of Greedy Algorithm. Write a min-heap in py.
 
 Prim's minimum spanning tree algorithm. Just naive implement.
 
+> Homework 1 code in `jellybean` folder
+
+## Homework 2.1
+
+Clustering. Implement Kruskal's MST algorithm. Use Heap to find the min edge each time. 
+
+## Homework 2.2
+
+Large scale clustering. Since the distance can't be stored explicitly, and the data is god-damn large, running time is pretty long. 
+
+Small scale test is ok. 
+
+*Need to be improved.*
+
+> Homework 2 code in `kitkat` folder
+
+## Homework 3.1 
+
+Regular-scale Knapsack Problem. Solve with straightforward iterative implementation. 
+
+## Homework 3.2
+
+Large-scale Knapsack Problem. Solve with recursive implementation. Since a 2-D array will occupy to much space, a new structure is defined in the program, called `Values`. 
+
+> Homework 3 code in `Lollipop` folder
+
 ## More Homework
 
 To be continued...
