@@ -101,6 +101,14 @@ Large-scale Knapsack Problem. Solve with recursive implementation. Since a 2-D a
 
 > Homework 3 code in `Lollipop` folder
 
+## Homework 4
+
+Shortest Path Problem. Started with Single-Source Shortest Path Problem, which can be solved with Bellman-Ford Algorithm, that is negative-wright compatible. 
+
+All-Pair Shortest Path Problem is then solved with Floyd-Warshall Algorithm. Actually it can also be solved with Belloman-Ford that starts with every vertex in a graph, but it was not coded in the assignment.
+
+> Homework 4 code in `Marshmallow` folder 
+
 ## More Homework
 
 To be continued...
